@@ -1,27 +1,22 @@
 package Sah::Schema::git::refname;
 
+# AUTHORITY
 # DATE
+# DIST
 # VERSION
 
-my $comp_re = '(?!\.)[^/]+(?!\.lock)(?!\.)';
+use Regexp::Pattern::Git;
 
 our $schema = [
     "str", {
         summary => "git reference name",
-        clset => [
-            {
-                match => qr!\A(?:$comp_re)(?:/$comp_re)+\z!,
-            },
-            {
-                match => qr!\.\.|[\0-\037\177]|[ ~^:?*\[\\]|@\{!,
-                'match.op' => 'not',
-            },
-            {
-                match => qr!\A(?:@)\z!,
-                'match.op' => 'not',
-            },
+        match => $Regexp::Pattern::Git::RE{ref}{pat},
+
+        examples => [
+            # some taken from Regexp::Pattern::Git
+            {value=>'foo/bar', valid=>1},
+            {value=>'.foo/bar', valid=>0, summary=>'A slash-separated component begins with dot (rule 1)'},
         ],
-        'clset.op' => 'and',
     },
     {},
 ];
