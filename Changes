@@ -1,3 +1,9 @@
+0.002   2020-03-27  Released-By: PERLANCAR; Urgency: medium
+
+	- Forgot to specify minimum version of Regexp::Pattern::Git
+	  [RT#132243].
+
+
 0.001   2020-03-26  Released-By: PERLANCAR
 
         - First release.
