@@ -13,7 +13,6 @@ our $schema = [
         match => $Regexp::Pattern::Git::RE{ref}{pat},
 
         examples => [
-            # some taken from Regexp::Pattern::Git
             {value=>'foo/bar', valid=>1},
             {value=>'.foo/bar', valid=>0, summary=>'A slash-separated component begins with dot (rule 1)'},
         ],
